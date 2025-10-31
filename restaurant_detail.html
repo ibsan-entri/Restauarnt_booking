@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="card">
+  <img src="{{ restaurant.image.url }}" class="rest-img" alt="{{ restaurant.name }}">
+  <h2>{{ restaurant.name }}</h2>
+  <p>{{ restaurant.description }}</p>
+  <h3>Menu:</h3>
+  <p>{{ restaurant.menu }}</p>
+
+  <h3>Available Tables:</h3>
+  <ul>
+    {% for table in tables %}
+      {% if table.is_available %}
+        <li>Table {{ table.table_number }} ({{ table.capacity }} persons)
+          <a href="{% url 'book_table' table.id %}" class="btn">Book Now</a>
+        </li>
+      {% else %}
+        <li>Table {{ table.table_number }} - <span style="color:red;">Unavailable</span></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

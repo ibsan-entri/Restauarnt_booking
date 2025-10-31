@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="card">
+  <h2>Book Table {{ table.table_number }}</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label>Date:</label>
+    <input type="date" name="date" required>
+    <label>Time:</label>
+    <input type="time" name="time" required>
+    <button type="submit" class="btn">Confirm Booking</button>
+  </form>
+</div>
+{% endblock %}

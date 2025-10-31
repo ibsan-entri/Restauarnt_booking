@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>All Restaurants</h2>
+<div class="card-grid">
+  {% for r in restaurants %}
+  <div class="card">
+    <img src="{{ r.image.url }}" alt="{{ r.name }}">
+    <h3>{{ r.name }}</h3>
+    <p>{{ r.description|truncatechars:100 }}</p>
+    <a href="{% url 'restaurant_detail' r.id %}" class="btn">View Details</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
